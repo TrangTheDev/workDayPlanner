@@ -1,12 +1,13 @@
 var today =[],
 today = moment().format('MMMM Do YYYY');
-var currentDay = document.getElementById ("#currentDay");
-currentDay.setAttribute("#currentDay",today);
+var currentDay = document.getElementById ("currentDay");
+currentDay.textContent = "Today's Date: " + (today);
 console.log(today);
 
 
-var timeSlots = {
-time: "12:00"};/*, 
+
+timeSlots = [
+time = "12:00",
 "1:00", 
 "2:00", 
 "3:00", 
@@ -27,9 +28,25 @@ time: "12:00"};/*,
 "18:00",
 "19:00",
 "20:00",
-"21:00"};*/
+"21:00"];
+var timeSlots = $("<p></p>").text(time);
+console.log(time);
+$("body").append(time);
+var timeValue = $("<p></p>").text(time.length-1);
+$("body").append[time.length-1];
+console.log(time.length-1);
 
-var addSlots = document.getElementById (".col");
-addSlots.setAttribute(".col",[timeSlots]);
+
+
+
+
+
+/*var addSlots = document.getElementById ("time-col");
+addSlots.textContent = (timeSlots.time)
+console.log(timeSlots.time);
+
+$(timeSlots).append("some appended text.");*/
+
+
 
 
