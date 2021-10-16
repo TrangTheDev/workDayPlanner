@@ -4,6 +4,8 @@
 
 let clockEl = document.getElementById ("current-day");
 const timeblocksContainerEl = document.getElementById ("timeblocks-container");
+let currentHour = moment().hour();
+console.log(currentHour);
 
 setInterval(function(){
 clockEl.textContent = moment().format('DD-MMM-YYYY HH:mm:ss')
@@ -81,28 +83,23 @@ function createTimeblock (time) {
 
   })
   
-
   //this text should show next time when the user revisit the page
 
   //what would happen if the user hit enter in the  text area
   //do the same thing with the button 
     
-
   return row;
 }
 
 
 //we want to see a list of timeclock
 //for every hour 12am-12am we want a timeblock
-for (let index = 0; index < times.length; index++) {
-  const time = times[index];
+for (let i = 0; i < times.length; i++) {
+  const time = times[i];
   const timeblock = createTimeblock(time);
   timeblocksContainerEl.appendChild(timeblock)
 }
 
-
-
-//when i scroll down i am presented with timeblocks for that day
 
 
 
@@ -114,5 +111,27 @@ for (let index = 0; index < times.length; index++) {
 //If the timeblock is future we want to give background color CSS class
 
 
+// Function which changes the colors on past, present and future classes
+
+
+function timeColorBlock() {
+  for (let i = 0; i < times.length; i++) {
+    const addColor = timeColorBlock[i]
+    if (i < currentHour) {
+      let colorBlock = "past";
+    }
+    else if (i === currentHour) {
+      let colorBlock = "present";
+    }
+    else if (i > currentHour) {
+      let colorBlock = "future";
+    }
+    
+  }
+}
+
+function addColor() {
+
+}
 
 
