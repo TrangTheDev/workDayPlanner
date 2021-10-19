@@ -31,16 +31,23 @@ function createTimeblock (time) {
   
   //col 1 is the time
   const colTime = document.createElement('div');
-  colTime.setAttribute('class', 'col-2 col-time .time-block');
+  colTime.setAttribute('class', 'col-2 col-time time-block');
   colTime.textContent = time;
   row.appendChild(colTime);
 
   //col 2 is the text area
   const colTextArea = document.createElement('div');
-  colTextArea.setAttribute('class', 'col-8 col-text-area');
+  colTextArea.setAttribute('class', 'col-8 col-text-area textarea');
   const textArea = document.createElement('textArea');
-  textArea.setAttribute('rows', "3, 13")
+  textArea.setAttribute('rows', "2, 13")
   textArea.setAttribute('id', time)
+  //input text should show next time when the user revisit the page
+  let saveItem = localStorage.getItem(time);
+  if (saveItem !== null){
+    //if local storafe is not empty then save the item inside the local storage on the text area
+    textArea.value = saveItem
+  }
+  
   colTextArea.appendChild(textArea);
   row.appendChild(colTextArea)
 
@@ -48,7 +55,7 @@ function createTimeblock (time) {
   const colBtn = document.createElement('div');
   colBtn.setAttribute('class', 'col-2 col-button');
   const button = document.createElement('button');
-  button.setAttribute('class','btn btn primary')
+  button.setAttribute('class','btn btn primary saveBtn')
   button.textContent = '+';
   colBtn.appendChild(button);
   row.appendChild(colBtn);
@@ -95,27 +102,28 @@ for (let i = 0; i < times.length; i++) {
   timeblocksContainerEl.appendChild(timeblock);
   //when i am presented with timeblocks each time block is color coded to indicate 
   //If time block is passed we want to give background color CSS class
-  if (i < currentHour) {
+  const timeCompare = i + 9;
+  console.log(timeCompare);
+  console.log(currentHour);
+  if (timeCompare < currentHour) {
     console.log("this is the past");
-    timeblocksContainerEl.setAttribute('class', 'past');
+    timeblock.classList.add('past');
   }
   //if the timeblock is current we want to give background color CSS class
-  else if (i === currentHour) {
+  else if (timeCompare === currentHour) {
     console.log("this is the present");
-    timeblocksContainerEl.setAttribute('class', 'present');
+    timeblock.classList.add('present');
   }
   //If the timeblock is future we want to give background color CSS class
-  else if (i > currentHour) {
+  else if (timeCompare > currentHour) {
     console.log("this is the future");
-    timeblocksContainerEl.setAttribute('class', 'future');
+    timeblock.classList.add('future');
   }
 };
 
 
   
-  //input text should show next time when the user revisit the page
-  let saveItem = localStorage.getItem(time,userInput);
-  
+
 
 
 
